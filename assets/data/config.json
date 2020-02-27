@@ -1,0 +1,23 @@
+{
+    "channel": "flip_channel",
+    "server": "oocsi.id.tue.nl",
+    "platform": "ESP32",
+    "controls": [
+        {
+        "type": "button",
+        "name": "test button",
+        "par": "button1",
+        "def": true
+    }, {
+        "type": "slider",
+        "name": "test slider",
+        "par": "slider1",
+        "min": 1,
+        "max": 100,
+        "def": 45
+    }, {
+        "type": "trigger",
+        "name": "test trigger",
+        "par": "trigger1"
+    }]
+}

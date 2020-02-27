@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<!-- Mirrored from oocsi.id.tue.nl/oocsimote by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2020 21:36:14 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<!-- /Added by HTTrack -->
+<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>OOCSImote</title>
+		<link rel="stylesheet" media="screen,projection" type="text/css" href="assets/css/materialize.min.css">
+		<link rel="stylesheet" media="screen,projection" type="text/css" href="assets/css/main.css">
+		<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+		<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+		<script src="assets/js/materialize.min.js" type="text/javascript"></script>
+		<script src="assets/js/qrcode.min.js" type="text/javascript"></script>
+		<script src="assets/js/jsonc.min.js" type="text/javascript"></script>
+		<script src="assets/js/oocsi-web.min.js" type="text/javascript"></script>
+		<script src="assets/js/main.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="container" class="grey">
+			<div class="row grey lighten-5">
+				<div class="col s12" style="text-align: right">
+					<h4 style="display: inline-block; width: 100%">
+						<span style="color: black;float: left">OOCSI<i>mote</i></span>
+						<a href="#modalQR" id="openQRBtn" class="btn-flat light-blue modal-trigger" style="margin-left: 0.5em;">
+							<i class="material-icons">airplay</i> play
+						</a>
+						<a href="#modalConfiguration" class="btn-flat green modal-trigger" style="margin-left: 0.5em;">
+							<i class="material-icons">wifi</i> connect
+						</a>
+						<a href="#modalTrigger" class="btn-flat green lighten-3 modal-trigger hide-on-small-only" style="margin-left: 0.5em;">
+							<i class="material-icons">add</i> trigger
+						</a>
+						<a href="#modalButton" class="btn-flat green lighten-3 modal-trigger hide-on-small-only" style="margin-left: 0.5em;">
+							<i class="material-icons">add</i> button
+						</a>
+						<a href="#modalSlider" class="btn-flat green lighten-3 modal-trigger hide-on-small-only" style="margin-left: 0.5em;">
+							<i class="material-icons">add</i> slider
+						</a>
+					</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div id="progress" class="progress">
+					<div class="indeterminate"></div>
+				</div>
+				<div id="controlContainer" class="col s12">
+				</div>
+			</div>
+
+			<!-- show connection info -->
+			<div id="modalQR" class="modal">
+				<div class="modal-content row">
+					<h4>Connect to this remote</h4>
+					<div id="qrcode" class="col s6"></div>
+					<div id="codelink" class="col s6 flow-text">
+						Use the QR code on the left or the link below to open this configuration of the OOCSImote in another browser window or on a mobile device. Then click the connect button to open a connection to the OOCSI server and start sending control events.
+						<a href="#" target="_blank" class="btn green">link</a>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat">close</a>
+				</div>
+			</div>
+
+			<!-- configuration -->
+			<div id="modalConfiguration" class="modal bottom-sheet">
+				<div class="modal-content">
+					<h4>Connect</h4>
+					<form>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="oocsi_channel" type="text" class="validate">
+								<label for="oocsi_channel">OOCSI Channel</label>
+							</div>
+							<div class="col s6">
+								<br>
+								Generate code for this <i>mote</i>:
+								<br>
+								<a id="moteGenerateProcessingBtn" href="#">Processing</a>,
+								<a id="moteGenerateESP32Btn" href="#">ESP32</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+					<a href="#!" id="connectBtn" class="modal-close waves-effect waves-green btn">Connect</a>
+				</div>
+			</div>
+
+			<!-- trigger -->
+			<div id="modalTrigger" class="modal bottom-sheet">
+				<div class="modal-content">
+					<h4>Add a trigger button</h4>
+					
+					<form>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="nameTt" type="text" class="validate">
+								<label for="nameTt">Control name</label>
+							</div>
+							<div class="input-field col s6">
+								<input id="parTt" type="text" class="validate">
+								<label for="parTt">Parameter name</label>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+					<a href="#!" id="addTriggerBtn" class="modal-close waves-effect waves-green btn">Add trigger button</a>
+				</div>
+			</div>
+
+			<!-- button -->
+			<div id="modalButton" class="modal bottom-sheet">
+				<div class="modal-content">
+					<h4>Add a button</h4>
+					
+					<form>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="nameBt" type="text" class="validate">
+								<label for="nameBt">Control name</label>
+							</div>
+							<div class="input-field col s6">
+								<input id="parBt" type="text" class="validate">
+								<label for="parBt">Parameter name</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col s6">
+								<div class="switch">
+									<label>
+										Off
+										<input id="defBt" type="checkbox">
+										<span class="lever"></span>
+										On
+									</label>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+					<a href="#!" id="addButtonBtn" class="modal-close waves-effect waves-green btn">Add button</a>
+				</div>
+			</div>
+
+			<!-- slider -->
+			<div id="modalSlider" class="modal bottom-sheet">
+				<div class="modal-content">
+					<h4>Add a slider</h4>
+					
+					<form>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="nameSl" type="text" class="validate">
+								<label for="nameSl">Control name</label>
+							</div>
+							<div class="input-field col s6">
+								<input id="parSl" type="text" class="validate">
+								<label for="parSl">Parameter name</label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="minSl" type="number" class="validate">
+								<label for="minSl">Min</label>
+							</div>
+							<div class="input-field col s6">
+								<input id="maxSl" type="number" class="validate">
+								<label for="maxSl">Max</label>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+					<a href="#!" id="addSliderBtn" class="modal-close waves-effect waves-green btn">Add slider</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
