@@ -37,24 +37,19 @@ $(document).ready(function() {
             name: "Light Control",
             par: "light_switch",
             def: false
-        }, {
-            type: "slider",
-            name: "test slider",
-            par: "slider1",
-            min: 1,
-            max: 100,
-            def: 45
-        }, {
-            type: "slider",
-            name: "test slider",
-            par: "slider1",
-            min: 1,
-            max: 100,
-            def: 45
-        }, {
+        }, 
+        {
             type: "trigger",
-            name: "test trigger",
-            par: "trigger1"
+            name: "Motion Trigger",
+            par: "motionTrigger"
+        },
+        {
+            type: "slider",
+            name: "Hue",
+            par: "hueController",
+            min: 0,
+            max: 255,
+            def: 0
         }]
     };
     $('#oocsi_channel').val(configuration.channel);
